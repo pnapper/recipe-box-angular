@@ -11,11 +11,19 @@ import { Recipe } from './recipe.model';
       <option value="Dinner">Dinner Recipes</option>
       <option value="Desert">Desert Recipes</option>
     </select>
-  <ul>
-    <li *ngFor="let currentRecipe of childRecipeList | meal:filterByMeal"><strong>{{currentRecipe.title}}</strong> <button (click)="editButtonHasBeenClicked(currentRecipe)">Edit!</button>
-       <div>Ingredients: {{currentRecipe.ingredients}}</div> <div>Instructions: {{currentRecipe.instructions}}</div>
-       <div>Meal: {{currentRecipe.meal}}</div><br><br></li>
-  </ul>
+    <h2 *ngFor="let currentRecipe of childRecipeList | meal:filterByMeal" (click)="showDetails(currentRecipe)"><strong>{{currentRecipe.title}}</strong>
+    </h2>
+
+    <div *ngIf="currentRecipe">
+    <hr>
+      <ul>
+        <li (click)="hideDetails(currentRecipe)">
+      <div><strong>Title: {{currentRecipe.title}}</strong></div> <button (click)="editButtonHasBeenClicked(currentRecipe)">Edit!</button>
+        <div>Ingredients: {{currentRecipe.ingredients}}</div>  <div>Instructions: {{currentRecipe.instructions}}</div>
+        <div>Meal: {{currentRecipe.meal}}</div>
+        </li><br><br>
+      </ul>
+    </div>
   `
 })
 
@@ -25,6 +33,15 @@ export class RecipeListComponent {
   @Output() clickSender = new EventEmitter();
 
   filterByMeal: string = "";
+  currentRecipe = null;
+
+  showDetails(clickedRecipe) {
+  this.currentRecipe = clickedRecipe;
+  }
+
+  hideDetails(clickedRecipe) {
+  this.currentRecipe = null;
+  }
 
   onChange(optionFromMenu) {
   this.filterByMeal = optionFromMenu;
