@@ -18,9 +18,10 @@ import { Recipe } from './recipe.model';
     <hr>
       <ul>
         <li (click)="hideDetails(currentRecipe)">
-      <div><strong>Title: {{currentRecipe.title}}</strong></div> <button (click)="editButtonHasBeenClicked(currentRecipe)">Edit!</button>
-        <div>Ingredients: {{currentRecipe.ingredients}}</div>  <div>Instructions: {{currentRecipe.instructions}}</div>
-        <div>Meal: {{currentRecipe.meal}}</div>
+        <h3><strong>{{currentRecipe.title}}</strong></h3>
+        <div>Ingredients: {{currentRecipe.ingredients}}</div><br>  <div>Instructions: {{currentRecipe.instructions}}</div><br>
+        <div>Meal: {{currentRecipe.meal}}</div><br>
+        <button (click)="editButtonHasBeenClicked(currentRecipe)">Edit!</button>
         </li><br><br>
       </ul>
     </div>
